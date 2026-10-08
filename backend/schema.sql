@@ -2,5 +2,14 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    created_at TIMESTAMPZ NOT NULL DEFAULT NOW()
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE TABLE decisions (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    option_a VARCHAR(200) NOT NULL,
+    option_b VARCHAR(200) NOT NULL,
+    result VARCHAR(200) NOT NULL,
+    decision_text TEXT NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
