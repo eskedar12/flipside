@@ -60,42 +60,6 @@ Two tables:
 
 The flip result is chosen on the frontend and sent to the backend, which only stores it.
 
-## Getting started
-
-### Prerequisites
-
-- Node.js
-- PostgreSQL
-
-### 1. Create the database
-
-```sql
-CREATE DATABASE flipside;
-```
-
-Then run `backend/schema.sql` against the `flipside` database (for example in pgAdmin's Query Tool, or with `psql`).
-
-### 2. Configure the backend
-
-Copy `backend/.env.example` to `backend/.env` and fill in your own values:
-
-```
-DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:5432/flipside
-JWT_SECRET=a_long_random_secret
-PORT=5000
-```
-
-Never commit `.env` to Git.
-
-### 3. Install dependencies
-
-```
-cd backend
-npm install
-
-cd ../frontend
-npm install
-```
 
 
 
