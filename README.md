@@ -2,7 +2,7 @@
 
 A full-stack coin-flip decision app. Type two options, flip the coin, and Flipside picks one and saves the decision to your history.
 
-I'm building this project to learn full-stack development, writing and understanding every file myself.
+I’m building this project to learn full-stack development deeply, step by step, writing and understanding every file myself and using AI as a tutor instead of a code generator.
 
 
 ## Features
