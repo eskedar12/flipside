@@ -98,20 +98,5 @@ cd ../frontend
 npm install
 ```
 
-Run commands for the backend and frontend will be added here as the scripts are written.
 
-## Progress
 
-- [x] Folder structure
-- [x] PostgreSQL database and schema
-- [ ] Backend: database connection
-- [ ] Backend: register and login
-- [ ] Backend: create, list, and delete decisions
-- [ ] Frontend: auth pages and protected routes
-- [ ] Frontend: flip page with coin animation
-- [ ] Frontend: history page
-- [ ] Deployment
-
-## Author
-
-Eskedar Nigussie
