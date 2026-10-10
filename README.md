@@ -4,7 +4,6 @@ A full-stack coin-flip decision app. Type two options, flip the coin, and Flipsi
 
 I'm building this project to learn full-stack development, writing and understanding every file myself.
 
-> **Status: in progress.** The database schema is done. The backend and frontend are being built step by step (see the checklist below).
 
 ## Features
 
