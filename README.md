@@ -58,8 +58,5 @@ Two tables:
 - **users**: `id`, `email` (unique), `password_hash`, `created_at`
 - **decisions**: `id`, `user_id` (references `users`, deleted along with the user), `option_a`, `option_b`, `result`, `created_at`
 
-The flip result is chosen on the frontend and sent to the backend, which only stores it.
-
-
 
 
