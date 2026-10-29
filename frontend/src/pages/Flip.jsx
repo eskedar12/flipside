@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import Coin from '../components/Coin.jsx';
-import { useAuth } from '../AuthContext.jsx';
+import Nav from '../components/Nav.jsx';
 import { api } from '../api.js';
 
 export default function Flip() {
-  const { user, logout } = useAuth();
-
   const [optionA, setOptionA] = useState('');
   const [optionB, setOptionB] = useState('');
   const [rotation, setRotation] = useState(0);
@@ -57,9 +55,7 @@ export default function Flip() {
 
   return (
     <div>
-      <p>
-        Logged in as {user.email} <button onClick={logout}>Logout</button>
-      </p>
+      <Nav />
 
       <h1>Flipside</h1>
 
