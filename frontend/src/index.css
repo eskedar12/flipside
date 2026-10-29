@@ -1,22 +1,153 @@
-body {
-  font-family: system-ui, sans-serif;
-  max-width: 420px;
-  margin: 40px auto;
-  padding: 0 16px;
+/* ---------- Colors, kept in one place as variables ---------- */
+:root {
+  --bg: #fafaf7;
+  --card: #ffffff;
+  --text: #1f2430;
+  --muted: #6b7280;
+  --border: #e3e3dc;
+  --accent: #b8860b;
+  --accent-hover: #946b08;
+  --link: #8a6508;
 }
 
+/* Dark mode: when the person's device is set to dark, swap the colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14161b;
+    --card: #1d2027;
+    --text: #eceae3;
+    --muted: #9aa0ab;
+    --border: #2c303a;
+    --accent: #f5c542;
+    --accent-hover: #ffd966;
+    --link: #f5c542;
+  }
+}
+
+/* ---------- Page basics ---------- */
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+h1 {
+  font-size: 28px;
+  margin: 0 0 16px;
+}
+
+h2 {
+  font-size: 20px;
+  text-align: center;
+  margin: 8px 0;
+}
+
+a {
+  color: var(--link);
+  font-weight: 600;
+}
+
+/* ---------- Forms ---------- */
 form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
 }
 
 label {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
 }
 
+input {
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+}
+
+input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* ---------- Buttons ---------- */
+button {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #1f2430;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ---------- Navigation bar ---------- */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.nav-user {
+  margin-left: auto;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Quieter style for the small buttons (Logout, Delete) */
+.nav button,
+.history-list button {
+  padding: 6px 12px;
+  font-weight: 500;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.nav button:hover:not(:disabled),
+.history-list button:hover:not(:disabled) {
+  background: var(--border);
+}
+
+/* ---------- The coin ---------- */
 .coin-scene {
   width: 140px;
   height: 140px;
@@ -54,19 +185,8 @@ label {
   background: #e0b030;
   transform: rotateY(180deg);
 }
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-}
 
-.nav-user {
-  margin-left: auto;
-  color: #666;
-  font-size: 14px;
-}
-
+/* ---------- History list ---------- */
 .history-list {
   list-style: none;
   padding: 0;
@@ -79,11 +199,17 @@ label {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  padding: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.history-list small {
+  color: var(--muted);
 }
 
 .history-list button {
   align-self: flex-start;
+  margin-top: 4px;
 }

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { api, getToken, setToken } from './api.js';
 
 const AuthContext = createContext(null);
@@ -38,6 +38,18 @@ export function AuthProvider({ children }) {
     localStorage.removeItem(USER_KEY);
     setUser(null);
   }
+
+  useEffect(() => {
+    function handleUnauthorized() {
+      logout();
+    }
+
+    window.addEventListener('flipside:unauthorized', handleUnauthorized);
+
+    return () => {
+      window.removeEventListener('flipside:unauthorized', handleUnauthorized);
+    };
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, login, register, logout }}>

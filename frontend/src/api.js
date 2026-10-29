@@ -27,6 +27,11 @@ async function request(path, options = {}) {
 
   const data = await response.json().catch(() => ({}));
 
+  if (response.status === 401 && !path.startsWith('/auth/')) {
+    setToken(null);
+    window.dispatchEvent(new Event('flipside:unauthorized'));
+  }
+
   if (!response.ok) {
     throw new Error(data.error || 'Something went wrong');
   }
