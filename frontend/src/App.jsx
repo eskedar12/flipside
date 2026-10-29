@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate, Link } from 'react-router-dom';
 import { useAuth } from './AuthContext.jsx';
 import Login from './pages/Login.jsx';
+import Register from './pages/Register.jsx';
 
 function Home() {
   const { user, logout } = useAuth();
@@ -23,6 +24,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
