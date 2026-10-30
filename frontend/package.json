@@ -2,12 +2,14 @@
   "name": "flipside-frontend",
   "version": "1.0.0",
   "description": "Flipside frontend",
-  "main": "src/index.js",
-  "scripts": {},
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "react": "^19.3.1",
     "react-dom": "^19.3.1",

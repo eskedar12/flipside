@@ -61,7 +61,7 @@ export default function Flip() {
 
       <form onSubmit={handleFlip}>
         <label>
-          Option A
+          Option 1
           <input
             value={optionA}
             onChange={(e) => setOptionA(e.target.value)}
@@ -71,7 +71,7 @@ export default function Flip() {
         </label>
 
         <label>
-          Option B
+          Option 2
           <input
             value={optionB}
             onChange={(e) => setOptionB(e.target.value)}

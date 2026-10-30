@@ -10,6 +10,5 @@ CREATE TABLE decisions (
     option_a VARCHAR(200) NOT NULL,
     option_b VARCHAR(200) NOT NULL,
     result VARCHAR(200) NOT NULL,
-    decision_text TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
