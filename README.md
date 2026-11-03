@@ -103,9 +103,6 @@ Copy `backend/.env.example` to `backend/.env` and fill in your own values:
 DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:5432/flipside
 JWT_SECRET=a_long_random_secret
 PORT=5000
-```
-
-Never commit `.env` to Git.
 
 ### 3. Install and run
 
