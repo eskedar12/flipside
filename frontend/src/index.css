@@ -1,48 +1,57 @@
 /* ---------- Colors, kept in one place as variables ---------- */
 :root {
-  --bg: #fafaf7;
+  color-scheme: light dark;
+  --bg: #f6f4ee;
   --card: #ffffff;
   --text: #1f2430;
   --muted: #6b7280;
-  --border: #e3e3dc;
+  --border: #e3e0d6;
   --accent: #b8860b;
   --accent-hover: #946b08;
+  --accent-soft: #fbf1d3;
   --link: #8a6508;
+  --error: #c62828;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 /* Dark mode: when the person's device is set to dark, swap the colors */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #14161b;
-    --card: #1d2027;
+    --bg: #101216;
+    --card: #1a1d24;
     --text: #eceae3;
     --muted: #9aa0ab;
-    --border: #2c303a;
+    --border: #2a2e38;
     --accent: #f5c542;
     --accent-hover: #ffd966;
+    --accent-soft: #2c2713;
     --link: #f5c542;
+    --error: #ff7b7b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 }
 
 /* ---------- Page basics ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
-  max-width: 420px;
+  max-width: 440px;
   margin: 0 auto;
-  padding: 24px 16px 48px;
+  padding: 24px 16px 56px;
+  line-height: 1.5;
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 26px;
   margin: 0 0 16px;
-}
-
-h2 {
-  font-size: 20px;
-  text-align: center;
-  margin: 8px 0;
+  letter-spacing: -0.02em;
 }
 
 a {
@@ -57,8 +66,19 @@ form {
   gap: 14px;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 22px;
+}
+
+form h1 {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+form p {
+  margin: 0;
+  text-align: center;
 }
 
 label {
@@ -66,16 +86,21 @@ label {
   flex-direction: column;
   gap: 6px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 input {
   font-size: 16px;
-  padding: 10px 12px;
+  padding: 11px 12px;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--bg);
   color: var(--text);
+}
+
+input::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
 }
 
 input:focus {
@@ -86,17 +111,22 @@ input:focus {
 /* ---------- Buttons ---------- */
 button {
   font-size: 15px;
-  font-weight: 600;
-  padding: 10px 16px;
+  font-weight: 700;
+  padding: 11px 16px;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--accent);
   color: #1f2430;
   cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
 }
 
 button:hover:not(:disabled) {
   background: var(--accent-hover);
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 button:disabled {
@@ -104,22 +134,65 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* ---------- Messages ---------- */
+.error {
+  color: var(--error);
+  font-size: 14px;
+  text-align: center;
+  margin: 8px 0;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  margin: 24px 0;
+}
+
 /* ---------- Navigation bar ---------- */
 .nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 16px;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--border);
 }
 
 .nav a {
   text-decoration: none;
+  color: var(--muted);
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
 }
 
 .nav a:hover {
-  text-decoration: underline;
+  color: var(--text);
+}
+
+.nav a.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.nav a.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 6px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  border-bottom: none;
+}
+
+.brand-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #f5c542;
+  border: 3px solid #b8860b;
 }
 
 .nav-user {
@@ -134,24 +207,35 @@ button:disabled {
 
 /* Quieter style for the small buttons (Logout, Delete) */
 .nav button,
-.history-list button {
+.history-footer button {
   padding: 6px 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
 }
 
 .nav button:hover:not(:disabled),
-.history-list button:hover:not(:disabled) {
+.history-footer button:hover:not(:disabled) {
   background: var(--border);
+}
+
+@media (max-width: 480px) {
+  .nav-user {
+    display: none;
+  }
+
+  .nav button {
+    margin-left: auto;
+  }
 }
 
 /* ---------- The coin ---------- */
 .coin-scene {
-  width: 140px;
-  height: 140px;
-  margin: 24px auto;
+  width: 150px;
+  height: 150px;
+  margin: 24px auto 12px;
   perspective: 600px;
 }
 
@@ -186,10 +270,75 @@ button:disabled {
   transform: rotateY(180deg);
 }
 
+/* Legend under the coin: which option is A and which is B */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.legend-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #1f2430;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.legend-sep {
+  margin: 0 4px;
+}
+
+/* The result card shown after the coin lands */
+.result {
+  margin-top: 12px;
+  padding: 16px;
+  text-align: center;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  overflow-wrap: anywhere;
+  animation: pop 0.35s ease-out;
+}
+
+.result small {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.result strong {
+  font-size: 22px;
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 /* ---------- History list ---------- */
 .history-list {
   list-style: none;
   padding: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -198,18 +347,51 @@ button:disabled {
 .history-list li {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
   padding: 14px;
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
+  box-shadow: var(--shadow);
 }
 
-.history-list small {
+.history-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.history-vs {
   color: var(--muted);
+  font-size: 13px;
 }
 
-.history-list button {
-  align-self: flex-start;
-  margin-top: 4px;
+.chip {
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.chip-win {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  font-weight: 700;
+}
+
+.chip-win::before {
+  content: '✓ ';
+}
+
+.history-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.history-footer small {
+  color: var(--muted);
 }
