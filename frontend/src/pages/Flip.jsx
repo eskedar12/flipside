@@ -57,24 +57,26 @@ export default function Flip() {
     <div>
       <Nav />
 
-      <h1>Flipside</h1>
+      <h1>Flip a coin</h1>
 
       <form onSubmit={handleFlip}>
         <label>
-          Option 1
+          Option A
           <input
             value={optionA}
             onChange={(e) => setOptionA(e.target.value)}
+            placeholder="e.g. Pizza"
             maxLength={200}
             disabled={flipping}
           />
         </label>
 
         <label>
-          Option 2
+          Option B
           <input
             value={optionB}
             onChange={(e) => setOptionB(e.target.value)}
+            placeholder="e.g. Burger"
             maxLength={200}
             disabled={flipping}
           />
@@ -87,8 +89,20 @@ export default function Flip() {
 
       <Coin rotation={rotation} onTransitionEnd={handleTransitionEnd} />
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {result && <h2>The coin chose: {result}</h2>}
+      <p className="legend">
+        <span className="legend-badge">A</span> {optionA.trim() || 'Option A'}
+        <span className="legend-sep">·</span>
+        <span className="legend-badge">B</span> {optionB.trim() || 'Option B'}
+      </p>
+
+      {error && <p className="error">{error}</p>}
+
+      {result && (
+        <div className="result">
+          <small>The coin chose</small>
+          <strong>{result}</strong>
+        </div>
+      )}
     </div>
   );
 }
