@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Nav from '../components/Nav.jsx';
 import { api } from '../api.js';
 
@@ -39,25 +40,39 @@ export default function History() {
     <div>
       <Nav />
 
-      <h1>History</h1>
+      <h1>History{decisions.length > 0 && ` (${decisions.length})`}</h1>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
 
-      {loading && <p>Loading...</p>}
+      {loading && <p className="empty">Loading...</p>}
 
       {!loading && decisions.length === 0 && !error && (
-        <p>No decisions yet. Go flip a coin!</p>
+        <p className="empty">
+          No decisions yet. <Link to="/">Go flip a coin!</Link>
+        </p>
       )}
 
       <ul className="history-list">
         {decisions.map((d) => (
           <li key={d.id}>
-            <div>
-              {d.option_a} vs {d.option_b}
+            <div className="history-options">
+              <span className={d.result === d.option_a ? 'chip chip-win' : 'chip'}>
+                {d.option_a}
+              </span>
+              <span className="history-vs">vs</span>
+              <span className={d.result === d.option_b ? 'chip chip-win' : 'chip'}>
+                {d.option_b}
+              </span>
             </div>
-            <strong>{d.result}</strong>
-            <small>{new Date(d.created_at).toLocaleString()}</small>
-            <button onClick={() => handleDelete(d.id)}>Delete</button>
+            <div className="history-footer">
+              <small>
+                {new Date(d.created_at).toLocaleString([], {
+                  dateStyle: 'medium',
+                  timeStyle: 'short',
+                })}
+              </small>
+              <button onClick={() => handleDelete(d.id)}>Delete</button>
+            </div>
           </li>
         ))}
       </ul>
