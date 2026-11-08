@@ -395,3 +395,22 @@ button:disabled {
 .history-footer small {
   color: var(--muted);
 }
+.history-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.history-toolbar button {
+  padding: 6px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  background: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+.history-toolbar button:hover:not(:disabled) {
+  background: var(--error);
+  color: #ffffff;
+}

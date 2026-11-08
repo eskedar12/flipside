@@ -63,3 +63,16 @@ export async function deleteDecision(req, res) {
     res.status(500).json({ error: 'Something went wrong' });
   }
 }
+
+export async function clearDecisions(req, res) {
+  try {
+    const cleared = await pool.query(
+      'DELETE FROM decisions WHERE user_id = $1',
+      [req.userId]
+    );
+    res.json({ deleted: cleared.rowCount });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+}

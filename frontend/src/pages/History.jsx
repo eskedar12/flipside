@@ -36,6 +36,20 @@ export default function History() {
     }
   }
 
+  async function handleClearAll() {
+    const message = `Delete all ${decisions.length} decisions? This cannot be undone.`;
+    if (!window.confirm(message)) return;
+
+    setError('');
+
+    try {
+      await api.clearDecisions();
+      setDecisions([]);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
   return (
     <div>
       <Nav />
@@ -50,6 +64,12 @@ export default function History() {
         <p className="empty">
           No decisions yet. <Link to="/">Go flip a coin!</Link>
         </p>
+      )}
+
+      {decisions.length > 1 && (
+        <div className="history-toolbar">
+          <button onClick={handleClearAll}>Clear all</button>
+        </div>
       )}
 
       <ul className="history-list">
