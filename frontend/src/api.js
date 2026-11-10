@@ -61,4 +61,6 @@ export const api = {
     }),
 
   deleteDecision: (id) => request(`/decisions/${id}`, { method: 'DELETE' }),
+
+  clearDecisions: () => request('/decisions', { method: 'DELETE' }),
 };
