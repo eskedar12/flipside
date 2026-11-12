@@ -1,32 +1,42 @@
 /* ---------- Colors, kept in one place as variables ---------- */
 :root {
   color-scheme: light dark;
-  --bg: #f6f4ee;
+  --bg: #f8f6fc;
   --card: #ffffff;
-  --text: #1f2430;
-  --muted: #6b7280;
-  --border: #e3e0d6;
-  --accent: #b8860b;
-  --accent-hover: #946b08;
-  --accent-soft: #fbf1d3;
-  --link: #8a6508;
+  --text: #1d192b;
+  --muted: #6b6678;
+  --border: #e4e0ec;
+  --accent: #7c3aed;
+  --accent-hover: #6d28d9;
+  --accent-soft: #ede9fe;
+  --accent-contrast: #ffffff;
+  --link: #6d28d9;
   --error: #c62828;
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --coin-border: #7c3aed;
+  --coin-front: #c4b5fd;
+  --coin-back: #a78bfa;
+  --coin-text: #2e1065;
+  --shadow: 0 1px 2px rgba(49, 16, 102, 0.04), 0 8px 24px rgba(49, 16, 102, 0.06);
 }
 
 /* Dark mode: when the person's device is set to dark, swap the colors */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #101216;
-    --card: #1a1d24;
-    --text: #eceae3;
-    --muted: #9aa0ab;
-    --border: #2a2e38;
-    --accent: #f5c542;
-    --accent-hover: #ffd966;
-    --accent-soft: #2c2713;
-    --link: #f5c542;
+    --bg: #121019;
+    --card: #1c1828;
+    --text: #edeaf5;
+    --muted: #9f99b0;
+    --border: #2f2a40;
+    --accent: #a78bfa;
+    --accent-hover: #c4b5fd;
+    --accent-soft: #2e234d;
+    --accent-contrast: #121019;
+    --link: #c4b5fd;
     --error: #ff7b7b;
+    --coin-border: #a78bfa;
+    --coin-front: #7c3aed;
+    --coin-back: #6d28d9;
+    --coin-text: #f5f3ff;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 }
@@ -116,7 +126,7 @@ button {
   border: none;
   border-radius: 10px;
   background: var(--accent);
-  color: #1f2430;
+  color: var(--accent-contrast);
   cursor: pointer;
   transition: background 0.15s, transform 0.1s;
 }
@@ -191,8 +201,8 @@ button:disabled {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #f5c542;
-  border: 3px solid #b8860b;
+  background: var(--coin-front);
+  border: 3px solid var(--coin-border);
 }
 
 .nav-user {
@@ -254,19 +264,19 @@ button:disabled {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  border: 6px solid #b8860b;
+  border: 6px solid var(--coin-border);
   font-size: 56px;
   font-weight: 700;
-  color: #7a5a00;
+  color: var(--coin-text);
   backface-visibility: hidden;
 }
 
 .coin-front {
-  background: #f5c542;
+  background: var(--coin-front);
 }
 
 .coin-back {
-  background: #e0b030;
+  background: var(--coin-back);
   transform: rotateY(180deg);
 }
 
@@ -292,7 +302,7 @@ button:disabled {
   height: 22px;
   border-radius: 50%;
   background: var(--accent);
-  color: #1f2430;
+  color: var(--accent-contrast);
   font-size: 12px;
   font-weight: 700;
 }
