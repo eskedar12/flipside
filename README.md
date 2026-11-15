@@ -17,7 +17,7 @@ I'm building this project to learn full-stack development deeply, step by step, 
 - Register and log in (passwords are hashed with bcrypt, sessions use JWT)
 - Enter two options and flip an animated 3D coin
 - Every decision is saved to your personal history
-- View and delete your past decisions
+- View and delete your past decisions, one at a time or all at once
 - Each user only ever sees and deletes their own data
 - Automatic logout when a login token expires
 - Rate limiting on login and register to slow down password guessing
@@ -72,6 +72,7 @@ flipside/
 | POST | `/api/decisions` | yes | save a decision |
 | GET | `/api/decisions` | yes | list your decisions |
 | DELETE | `/api/decisions/:id` | yes | delete one of your decisions |
+| DELETE | `/api/decisions` | yes | delete all of your decisions |
 
 ## Database
 
@@ -103,6 +104,9 @@ Copy `backend/.env.example` to `backend/.env` and fill in your own values:
 DATABASE_URL=postgresql://postgres:YOUR_PASSWORD@localhost:5432/flipside
 JWT_SECRET=a_long_random_secret
 PORT=5000
+```
+
+Never commit `.env` to Git.
 
 ### 3. Install and run
 
@@ -153,3 +157,7 @@ Set `DATABASE_SSL=true` if your hosted database requires SSL.
 - [x] Frontend: history page
 - [x] Styling and dark mode
 - [ ] Deployment
+
+## Author
+
+Eskedar Nigussie
