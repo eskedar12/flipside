@@ -36,6 +36,8 @@ export default function Login() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@example.com"
+          autoComplete="email"
           required
         />
       </label>
@@ -46,11 +48,13 @@ export default function Login() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="Your password"
+          autoComplete="current-password"
           required
         />
       </label>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
 
       <button type="submit" disabled={submitting}>
         {submitting ? 'Logging in...' : 'Log in'}
