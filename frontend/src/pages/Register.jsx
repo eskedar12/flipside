@@ -36,6 +36,8 @@ export default function Register() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          placeholder="you@example.com"
+          autoComplete="email"
           required
         />
       </label>
@@ -46,13 +48,15 @@ export default function Register() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          placeholder="At least 8 characters"
+          autoComplete="new-password"
           minLength={8}
           maxLength={72}
           required
         />
       </label>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p className="error">{error}</p>}
 
       <button type="submit" disabled={submitting}>
         {submitting ? 'Creating account...' : 'Register'}
